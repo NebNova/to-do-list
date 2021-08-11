@@ -10,4 +10,7 @@ Move to the folder containing the repo within a terminal.
 
 Type: ionic serve
 
-The project should be opened in a browser window.
+If now errors were found the project should be opened in a browser window.
+
+If the probject was not opened in a browser, use the following address in a browser.
+http://localhost:8100/home
