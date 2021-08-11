@@ -4,7 +4,6 @@ import {
   IonApp,
   IonHeader,
   IonContent,
-  IonRouterOutlet,
   IonToolbar,
   IonTitle,
   IonGrid,
@@ -51,9 +50,10 @@ const App: React.FC = () => {
 
     if (!newEntryText) {
       setError("Entry Text cannont be blank!");
+      console.log(newEntryText);
       return;
     }
-
+    console.log(newEntryText);
     setNewItem(newEntryText);
   };
 
@@ -92,8 +92,7 @@ const App: React.FC = () => {
                 </IonCol>
                 <IonCol>
                   <IonInput>
-                    <IonButton onClick={newEntry}>
-                      {newItem && <ListEntry entryText={newItem} onDelete={deleteEntry} onEdit={editEntry} />}
+                    <IonButton onClick={newEntry} >
                       Add To List
                     </IonButton>
                   </IonInput>
@@ -105,6 +104,7 @@ const App: React.FC = () => {
         <IonContent>
           <IonList>
             <IonGrid /** new entrys should go in this grid */>
+             {newItem && <ListEntry entryText={newItem} onDelete={deleteEntry} onEdit={editEntry} />}
             </IonGrid>
           </IonList>
         </IonContent>
