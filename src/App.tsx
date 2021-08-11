@@ -14,7 +14,6 @@ import {
   IonButton,
   IonList,
   IonAlert,
-  IonActionSheet,
   IonModal,
 } from "@ionic/react";
 import ListEntry from "./components/ListEntry";
@@ -41,30 +40,41 @@ import "@ionic/react/css/display.css";
 import "./theme/variables.css";
 
 const App: React.FC = () => {
+  const [newItem, setNewItem] = useState<string>();
   const [edit, setEdit] = useState<string>();
+  const [error, setError] = useState<string>();
   const entryTextRef = useRef<HTMLIonInputElement>(null);
+  const editEntryTextRef = useRef<HTMLIonInputElement>(null);
 
   const newEntry = () => {
-    const newEntryText = entryTextRef.current?.value;
+    const newEntryText = entryTextRef.current!.textContent;
+
+    if (!newEntryText) {
+      setError("Entry Text cannont be blank!");
+      return;
+    }
+
+    setNewItem(newEntryText);
   };
 
-  const deleteEntry = () => {
-
+  const clearError = () => {
+    setError("");
   };
+
+  const deleteEntry = () => {};
 
   const editEntry = () => {
-    setEdit("Please enter new entry text.");
-
+    setEdit("Enter text here");
   };
-
 
   return (
     <React.Fragment>
-      <IonModal
-      isOpen={!!edit}
-      >
-        new modal
-      </IonModal>
+      <IonAlert
+        isOpen={!!error}
+        message={error}
+        buttons={[{ text: "Okay", handler: clearError }]}
+      />
+      <IonModal isOpen={!!edit}>Edit modal</IonModal>
       <IonApp>
         <IonHeader>
           <IonToolbar color="tertiary">
@@ -83,6 +93,7 @@ const App: React.FC = () => {
                 <IonCol>
                   <IonInput>
                     <IonButton onClick={newEntry}>
+                      {newItem && <ListEntry entryText={newItem} onDelete={deleteEntry} onEdit={editEntry} />}
                       Add To List
                     </IonButton>
                   </IonInput>
@@ -93,8 +104,7 @@ const App: React.FC = () => {
         </IonHeader>
         <IonContent>
           <IonList>
-            <IonGrid>
-              <ListEntry onDelete={deleteEntry} onEdit={editEntry} />
+            <IonGrid /** new entrys should go in this grid */>
             </IonGrid>
           </IonList>
         </IonContent>

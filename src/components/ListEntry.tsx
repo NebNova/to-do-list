@@ -1,16 +1,16 @@
 import React from "react";
-import { IonCol, IonIcon, IonItem, IonRadio, IonRow, } from "@ionic/react";
+import { IonCheckbox, IonCol, IonIcon, IonItem, IonRow, } from "@ionic/react";
 import { pencilOutline, trashOutline } from "ionicons/icons";
-import App from "../App";
 
 const ListEntry: React.FC<{
+  entryText: string;
   onEdit: () => void;
   onDelete: () => void;
 }> = (props) => {
 return (
     <IonRow>
       <IonCol>
-        <IonRadio></IonRadio>
+        <IonCheckbox></IonCheckbox>
       </IonCol>
       <IonCol>
         <IonItem> </IonItem>
