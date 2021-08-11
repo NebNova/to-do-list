@@ -1,0 +1,13 @@
+This is an unfinished project.
+
+To run what is here, you must have Node.js and Ionic CLI installed.
+For information on that use the link below.
+https://ionicframework.com/docs/intro/cli
+
+Once these are installed, download the repo. 
+
+Move to the folder containing the repo within a terminal.
+
+Type: ionic serve
+
+The project should be opened in a browser window.
